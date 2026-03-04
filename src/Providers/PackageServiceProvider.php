@@ -4,15 +4,14 @@ namespace Mhshagor\LaravelComponents\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Blade;
+use Mhshagor\LaravelComponents\Commands\PublishAllCommand;
 
 class PackageServiceProvider extends ServiceProvider
 {
     protected $basePath = __DIR__ . '/../../';
-    protected $filePickerBasePath = __DIR__ . '/../../../file-picker/';
 
     protected $packages = [
         'components',
-        'file-picker'
     ];
     
     private function publishPackage($package)
@@ -23,7 +22,6 @@ class PackageServiceProvider extends ServiceProvider
         }
         $paths = match($package) {
             'components' => $this->publishComponents($package),
-            'file-picker' => $this->publishFilePicker($package),
             default => throw new \Exception("Unknown package: {$package}"),
         };
         
@@ -34,7 +32,6 @@ class PackageServiceProvider extends ServiceProvider
     {
         $paths = [
             ...$this->publishComponents('components'),
-            ...$this->publishFilePicker('file-picker'),
         ];
         
         $this->publishes($paths, 'all');
@@ -50,23 +47,18 @@ class PackageServiceProvider extends ServiceProvider
         ];
     }
     
-    private function publishFilePicker($package)
-    {
-        return [
-            $this->filePickerBasePath . 'assets/demo/file-picker.html' => resource_path('views/sgd/file-picker.html'),
-            $this->filePickerBasePath . 'assets/js' => resource_path('js/sgd'),
-            $this->filePickerBasePath . 'assets/css' => resource_path('css/sgd'),
-            $this->filePickerBasePath . 'assets/components' => resource_path('views/components'),
-        ];
-    }
-
 
     public function boot()
     {
         foreach ($this->packages as $package) {
             $this->publishPackage($package);
         }
-        $this->publishAll();
+
+        if ($this->app->runningInConsole()) {
+            $this->commands([
+                PublishAllCommand::class,
+            ]);
+        }
     }
     
     public function register()
