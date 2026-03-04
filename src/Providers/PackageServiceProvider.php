@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Blade;
 
 class PackageServiceProvider extends ServiceProvider
 {
-    protected $basePath = __DIR__ . '/../../';
+    protected $basePath = __DIR__ . 'mhshagor';
 
     protected $packages = [
         'components',
@@ -42,20 +42,20 @@ class PackageServiceProvider extends ServiceProvider
     private function publishComponents($package)
     {
         return [
-            $this->basePath . '/assets/demo' => resource_path('views/sgd'),
-            $this->basePath . '/assets/js' => resource_path('js/sgd'),
-            $this->basePath . '/assets/css' => resource_path('css/sgd'),
-            $this->basePath . '/assets/components' => resource_path('views/components'),
+            $this->basePath . 'laravel-components/assets/demo' => resource_path('views/sgd'),
+            $this->basePath . 'laravel-components/assets/js' => resource_path('js/sgd'),
+            $this->basePath . 'laravel-components/assets/css' => resource_path('css/sgd'),
+            $this->basePath . 'laravel-components/assets/components' => resource_path('views/components'),
         ];
     }
     
     private function publishFilePicker($package)
     {
         return [
-            $this->basePath . '../file-picker/assets/demo' => resource_path('views/sgd'),
-            $this->basePath . '../file-picker/assets/js' => resource_path('js/sgd'),
-            $this->basePath . '../file-picker/assets/css' => resource_path('css/sgd'),
-            $this->basePath . '../file-picker/assets/components' => resource_path('views/components'),
+            $this->basePath . 'laravel-components/file-picker/assets/demo' => resource_path('views/sgd'),
+            $this->basePath . 'laravel-components/file-picker/assets/js' => resource_path('js/sgd'),
+            $this->basePath . 'laravel-components/file-picker/assets/css' => resource_path('css/sgd'),
+            $this->basePath . 'laravel-components/file-picker/assets/components' => resource_path('views/components'),
         ];
     }
 
