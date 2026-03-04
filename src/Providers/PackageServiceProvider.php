@@ -7,7 +7,8 @@ use Illuminate\Support\Facades\Blade;
 
 class PackageServiceProvider extends ServiceProvider
 {
-    protected $basePath = __DIR__ . 'mhshagor';
+    protected $basePath = __DIR__ . '/../../';
+    protected $filePickerBasePath = $this->basePath . '../file-picker/';
 
     protected $packages = [
         'components',
@@ -42,20 +43,20 @@ class PackageServiceProvider extends ServiceProvider
     private function publishComponents($package)
     {
         return [
-            $this->basePath . 'laravel-components/assets/demo' => resource_path('views/sgd'),
-            $this->basePath . 'laravel-components/assets/js' => resource_path('js/sgd'),
-            $this->basePath . 'laravel-components/assets/css' => resource_path('css/sgd'),
-            $this->basePath . 'laravel-components/assets/components' => resource_path('views/components'),
+            $this->basePath . 'assets/demo' => resource_path('views/sgd'),
+            $this->basePath . 'assets/js' => resource_path('js/sgd'),
+            $this->basePath . 'assets/css' => resource_path('css/sgd'),
+            $this->basePath . 'assets/components' => resource_path('views/components'),
         ];
     }
     
     private function publishFilePicker($package)
     {
         return [
-            $this->basePath . 'laravel-components/file-picker/assets/demo' => resource_path('views/sgd'),
-            $this->basePath . 'laravel-components/file-picker/assets/js' => resource_path('js/sgd'),
-            $this->basePath . 'laravel-components/file-picker/assets/css' => resource_path('css/sgd'),
-            $this->basePath . 'laravel-components/file-picker/assets/components' => resource_path('views/components'),
+            $this->filePickerBasePath . 'assets/demo/file-picker.html' => resource_path('views/sgd/file-picker.html'),
+            $this->filePickerBasePath . 'assets/js' => resource_path('js/sgd'),
+            $this->filePickerBasePath . 'assets/css' => resource_path('css/sgd'),
+            $this->filePickerBasePath . 'assets/components' => resource_path('views/components'),
         ];
     }
 
@@ -65,7 +66,6 @@ class PackageServiceProvider extends ServiceProvider
         foreach ($this->packages as $package) {
             $this->publishPackage($package);
         }
-        $this->publishAll();
     }
     
     public function register()
