@@ -42,20 +42,20 @@ class PackageServiceProvider extends ServiceProvider
     private function publishComponents($package)
     {
         return [
-            $this->basePath . '/asset/demo' => resource_path('views/sgd'),
-            $this->basePath . '/asset/js' => resource_path('js/sgd'),
-            $this->basePath . '/asset/css' => resource_path('css/sgd'),
-            $this->basePath . '/asset/components' => resource_path('views/components'),
+            $this->basePath . '/assets/demo' => resource_path('views/sgd'),
+            $this->basePath . '/assets/js' => resource_path('js/sgd'),
+            $this->basePath . '/assets/css' => resource_path('css/sgd'),
+            $this->basePath . '/assets/components' => resource_path('views/components'),
         ];
     }
     
     private function publishFilePicker($package)
     {
         return [
-            $this->basePath . '/../file-picker/asset/demo' => resource_path('views/sgd'),
-            $this->basePath . '/../file-picker/asset/js' => resource_path('js/sgd'),
-            $this->basePath . '/../file-picker/asset/css' => resource_path('css/sgd'),
-            $this->basePath . '/../file-picker/asset/components' => resource_path('views/components'),
+            $this->basePath . '/../file-picker/assets/demo' => resource_path('views/sgd'),
+            $this->basePath . '/../file-picker/assets/js' => resource_path('js/sgd'),
+            $this->basePath . '/../file-picker/assets/css' => resource_path('css/sgd'),
+            $this->basePath . '/../file-picker/assets/components' => resource_path('views/components'),
         ];
     }
 
