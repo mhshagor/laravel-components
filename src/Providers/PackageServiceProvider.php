@@ -66,6 +66,7 @@ class PackageServiceProvider extends ServiceProvider
         foreach ($this->packages as $package) {
             $this->publishPackage($package);
         }
+        $this->publishAll();
     }
     
     public function register()
