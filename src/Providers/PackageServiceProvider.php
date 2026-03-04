@@ -4,14 +4,14 @@ namespace Mhshagor\LaravelComponents\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Blade;
-use Illuminate\Support\Facades\File;
 
-class PackagesServiceProvider extends ServiceProvider
+class PackageServiceProvider extends ServiceProvider
 {
     protected $basePath = __DIR__ . '/../../';
 
     protected $packages = [
         'components',
+        'file-picker'
     ];
     
     private function publishPackage($package)
@@ -22,7 +22,7 @@ class PackagesServiceProvider extends ServiceProvider
         }
         $paths = match($package) {
             'components' => $this->publishComponents($package),
-            
+            'file-picker' => $this->publishFilePicker($package),
             default => throw new \Exception("Unknown package: {$package}"),
         };
         
@@ -33,6 +33,7 @@ class PackagesServiceProvider extends ServiceProvider
     {
         $paths = [
             ...$this->publishComponents('components'),
+            ...$this->publishFilePicker('file-picker'),
         ];
         
         $this->publishes($paths, 'all');
@@ -41,19 +42,29 @@ class PackagesServiceProvider extends ServiceProvider
     private function publishComponents($package)
     {
         return [
-            $this->basePath . '/components' => resource_path('views/components'),
+            $this->basePath . '/asset/demo' => resource_path('views/sgd'),
             $this->basePath . '/asset/js' => resource_path('js/sgd'),
             $this->basePath . '/asset/css' => resource_path('css/sgd'),
-            $this->basePath . '/demo' => resource_path('views/sgd'),
+            $this->basePath . '/asset/components' => resource_path('views/components'),
         ];
-    }    
+    }
+    
+    private function publishFilePicker($package)
+    {
+        return [
+            $this->basePath . '/../file-picker/asset/demo' => resource_path('views/sgd'),
+            $this->basePath . '/../file-picker/asset/js' => resource_path('js/sgd'),
+            $this->basePath . '/../file-picker/asset/css' => resource_path('css/sgd'),
+            $this->basePath . '/../file-picker/asset/components' => resource_path('views/components'),
+        ];
+    }
+
 
     public function boot()
     {
         foreach ($this->packages as $package) {
             $this->publishPackage($package);
         }
-        $this->publishAll();
     }
     
     public function register()

@@ -5,7 +5,7 @@
     "laravel",
     "components"
   ],
-  "version": "1.0.3",
+  "version": "1.0.4",
   "type": "library",
   "license": "MIT",
   "require": {
@@ -28,7 +28,7 @@
   "extra": {
     "laravel": {
       "providers": [
-        "Mhshagor\\LaravelComponents\\Providers\\PackagesServiceProvider"
+        "Mhshagor\\LaravelComponents\\Providers\\PackageServiceProvider"
       ]
     }
   },
