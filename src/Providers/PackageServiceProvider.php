@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Blade;
 class PackageServiceProvider extends ServiceProvider
 {
     protected $basePath = __DIR__ . '/../../';
-    protected $filePickerBasePath = $this->basePath . '../file-picker/';
+    protected $filePickerBasePath = __DIR__ . '/../../../file-picker/';
 
     protected $packages = [
         'components',
