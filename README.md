@@ -30,7 +30,7 @@ This package publishes multiple sets of files using `vendor:publish` tags.
 - **Publish everything**
 
 ```bash
-php artisan vendor:publish --tag=all
+php artisan mhshagor:publish-all
 ```
 
 - **Publish only the File Picker package**
