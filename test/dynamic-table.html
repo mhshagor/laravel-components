@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dynamic Table Component Demo</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="../assets/css/components.css" />
+  </head>
+  <body class="bg-gradient-to-br from-indigo-500 to-purple-600 min-h-screen p-5">
+    <div class="max-w-7xl mx-auto bg-white rounded-2xl shadow-2xl p-10">
+      <h1 class="text-center text-gray-800 mb-2 text-4xl font-bold">Dynamic Table Component</h1>
+      <p class="text-center text-gray-600 mb-10 text-lg">Interactive table with add, clone, and delete row functionality</p>
+
+      <div class="bg-gray-50 rounded-xl p-8 mb-6 border border-gray-200 hover:shadow-lg transition-all duration-200">
+        <h2 class="text-gray-700 mb-5 text-2xl font-semibold flex items-center gap-2">
+          <span class="w-1 h-6 bg-gradient-to-r from-indigo-500 to-purple-600 rounded"></span>
+          Basic User Management <span class="inline-block px-2 py-1 rounded text-xs font-semibold ml-2 bg-yellow-400 text-gray-900">Popular</span>
+        </h2>
+        <p class="mb-5 text-gray-600">Manage user information with dynamic row operations. Add new users, clone existing entries, and remove rows as needed.</p>
+        
+        <div class="overflow-x-auto my-5">
+          <table class="w-full border border-gray-300 dark:border-black/30 dynamicTable" id="userTable">
+            <thead class="bg-black/30">
+              <tr>
+                <th class="whitespace-nowrap font-medium text-sm border-b dark:border-black/30 border-gray-300 text-center" style="width: 50px;">#</th>
+                <th class="whitespace-nowrap font-medium text-sm border-b dark:border-black/30 border-gray-300 text-center">First Name</th>
+                <th class="whitespace-nowrap font-medium text-sm border-b dark:border-black/30 border-gray-300 text-center">Last Name</th>
+                <th class="whitespace-nowrap font-medium text-sm border-b dark:border-black/30 border-gray-300 text-center">Email</th>
+                <th class="whitespace-nowrap font-medium text-sm border-b dark:border-black/30 border-gray-300 text-center">Role</th>
+                <th class="whitespace-nowrap font-medium text-sm border-b dark:border-black/30 border-gray-300 text-center" width="0.5%">
+                  <button class="addRow bg-indigo-600 dark:bg-indigo-500 hover:bg-indigo-500 dark:hover:bg-indigo-400 rounded-md p-2 text-center font-semibold text-white shadow-sm transition-colors duration-200 flex items-center justify-center h-8 w-8 m-0.5 cursor-pointer" title="Add Row">
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke-width="1.5"
+                        stroke="currentColor"
+                        class="!text-base"
+                    >
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            d="M12 4.5v15m7.5-7.5h-15"
+                        />
+                    </svg>
+                  </button>
+                </th>
+              </tr>
+            </thead>
+            <tbody class="appendClone">
+              <tr class="text-sm border-b dark:border-black/30 border-gray-300 cloneRow">
+                <td class="text-center counter">1</td>
+                <td>
+                  <input type="text" name="users[0][first_name]" placeholder="First name" class="w-full p-2 border border-gray-300 rounded-md" />
+                </td>
+                <td>
+                  <input type="text" name="users[0][last_name]" placeholder="Last name" class="w-full p-2 border border-gray-300 rounded-md" />
+                </td>
+                <td>
+                  <input type="email" name="users[0][email]" placeholder="Email address" class="w-full p-2 border border-gray-300 rounded-md" />
+                </td>
+                <td>
+                  <select name="users[0][role]" class="w-full p-2 border border-gray-300 rounded-md">
+                    <option value="">Select role</option>
+                    <option value="admin">Admin</option>
+                    <option value="user">User</option>
+                    <option value="moderator">Moderator</option>
+                  </select>
+                </td>
+                <td>
+                  <button class=" cursor-pointer deleteRow bg-red-600 dark:bg-red-500 hover:bg-red-500 dark:hover:bg-red-400 rounded-md p-2 text-center font-semibold text-white shadow-sm transition-colors duration-200 flex items-center justify-center h-8 w-8 m-0.5" title="Delete Row">
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke-width="1.5"
+                        stroke="currentColor"
+                        class="!text-base"
+                    >
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0"
+                        />
+                    </svg>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="bg-gray-50 rounded-xl p-8 mb-6 border border-gray-200 hover:shadow-lg transition-all duration-200">
+        <h2 class="text-gray-700 mb-5 text-2xl font-semibold flex items-center gap-2">
+          <span class="w-1 h-6 bg-gradient-to-r from-indigo-500 to-purple-600 rounded"></span>
+          Product Inventory <span class="inline-block px-2 py-1 rounded text-xs font-semibold ml-2 bg-green-500 text-white">New</span>
+        </h2>
+        <p class="mb-5 text-gray-600">Track product inventory with dynamic rows for adding new items and managing stock levels.</p>
+        
+        <div class="overflow-x-auto my-5">
+          <table class="w-full border border-gray-300 dark:border-black/30 dynamicTable" id="productTable">
+            <thead class="bg-black/30">
+              <tr>
+                <th class="whitespace-nowrap font-medium text-sm border-b dark:border-black/30 border-gray-300 text-center" style="width: 50px;">#</th>
+                <th class="whitespace-nowrap font-medium text-sm border-b dark:border-black/30 border-gray-300 text-center">Product Name</th>
+                <th class="whitespace-nowrap font-medium text-sm border-b dark:border-black/30 border-gray-300 text-center">SKU</th>
+                <th class="whitespace-nowrap font-medium text-sm border-b dark:border-black/30 border-gray-300 text-center">Price</th>
+                <th class="whitespace-nowrap font-medium text-sm border-b dark:border-black/30 border-gray-300 text-center">Stock</th>
+                <th class="whitespace-nowrap font-medium text-sm border-b dark:border-black/30 border-gray-300 text-center">Category</th>
+                <th class="whitespace-nowrap font-medium text-sm border-b dark:border-black/30 border-gray-300 text-center" width="0.5%">
+                  <button class="cursor-pointer addRow dark:bg-indigo-500 hover:bg-indigo-500 dark:hover:bg-indigo-400 rounded-md p-2 text-center font-semibold text-white shadow-sm transition-colors duration-200 flex items-center justify-center h-8 w-8 m-0.5" title="Add Row">
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke-width="1.5"
+                        stroke="currentColor"
+                        class="!text-base"
+                    >
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            d="M12 4.5v15m7.5-7.5h-15"
+                        />
+                    </svg>
+                  </button>
+                </th>
+              </tr>
+            </thead>
+            <tbody class="appendClone">
+              <tr class="text-sm border-b border-gray-300 cloneRow">
+                <td class="text-center counter">1</td>
+                <td>
+                  <input type="text" name="products[0][name]" placeholder="Product name" class="w-full p-2 border border-gray-300 rounded-md" />
+                </td>
+                <td>
+                  <input type="text" name="products[0][sku]" placeholder="SKU" class="w-full p-2 border border-gray-300 rounded-md" />
+                </td>
+                <td>
+                  <input type="number" name="products[0][price]" placeholder="0.00" step="0.01" class="w-full p-2 border border-gray-300 rounded-md" />
+                </td>
+                <td>
+                  <input type="number" name="products[0][stock]" placeholder="0" class="w-full p-2 border border-gray-300 rounded-md" />
+                </td>
+                <td>
+                  <select name="products[0][category]" class="w-full p-2 border border-gray-300 rounded-md">
+                    <option value="">Select category</option>
+                    <option value="electronics">Electronics</option>
+                    <option value="clothing">Clothing</option>
+                    <option value="food">Food</option>
+                    <option value="books">Books</option>
+                  </select>
+                </td>
+                <td>
+                  <button class="cursor-pointer deleteRow hover:bg-red-500 rounded-md p-2 text-center font-semibold text-white shadow-sm transition-colors duration-200 flex items-center justify-center h-8 w-8 m-0.5" title="Delete Row">
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke-width="1.5"
+                        stroke="currentColor"
+                        class="!text-base"
+                    >
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0"
+                        />
+                    </svg>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="bg-gray-50 rounded-xl p-8 mb-6 border border-gray-200 hover:shadow-lg transition-all duration-200">
+        <h2 class="text-gray-700 mb-5 text-2xl font-semibold flex items-center gap-2">
+          <span class="w-1 h-6 bg-gradient-to-r from-indigo-500 to-purple-600 rounded"></span>
+          Contact Form with Notes <span class="inline-block px-2 py-1 rounded text-xs font-semibold ml-2 bg-red-600 text-white">Advanced</span>
+        </h2>
+        <p class="mb-5 text-gray-600">Advanced contact management with textarea fields for additional notes and comments.</p>
+        
+        <div class="overflow-x-auto my-5">
+          <table class="w-full border border-gray-300 dark:border-black/30 dynamicTable" id="contactTable">
+            <thead class="bg-black/30">
+              <tr>
+                <th class="whitespace-nowrap font-medium text-sm border-b dark:border-black/30 border-gray-300 text-center" style="width: 50px;">#</th>
+                <th class="whitespace-nowrap font-medium text-sm border-b dark:border-black/30 border-gray-300 text-center">Contact Name</th>
+                <th class="whitespace-nowrap font-medium text-sm border-b dark:border-black/30 border-gray-300 text-center">Phone</th>
+                <th class="whitespace-nowrap font-medium text-sm border-b dark:border-black/30 border-gray-300 text-center">Email</th>
+                <th class="whitespace-nowrap font-medium text-sm border-b dark:border-black/30 border-gray-300 text-center">Company</th>
+                <th class="whitespace-nowrap font-medium text-sm border-b dark:border-black/30 border-gray-300 text-center">Notes</th>
+                <th class="whitespace-nowrap font-medium text-sm border-b dark:border-black/30 border-gray-300 text-center" width="0.5%">
+                  <button class=" cursor-pointer addRow bg-indigo-600 dark:bg-indigo-500 hover:bg-indigo-500 dark:hover:bg-indigo-400 rounded-md p-2 text-center font-semibold text-white shadow-sm transition-colors duration-200 flex items-center justify-center h-8 w-8 m-0.5" title="Add Row">
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke-width="1.5"
+                        stroke="currentColor"
+                        class="!text-base"
+                    >
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            d="M12 4.5v15m7.5-7.5h-15"
+                        />
+                    </svg>
+                  </button>
+                </th>
+              </tr>
+            </thead>
+            <tbody class="appendClone">
+              <tr class="text-sm border-b dark:border-black/30 border-gray-300 cloneRow">
+                <td class="text-center counter">1</td>
+                <td>
+                  <input type="text" name="contacts[0][name]" placeholder="Contact name" class="w-full p-2 border border-gray-300 rounded-md" />
+                </td>
+                <td>
+                  <input type="tel" name="contacts[0][phone]" placeholder="Phone number" class="w-full p-2 border border-gray-300 rounded-md" />
+                </td>
+                <td>
+                  <input type="email" name="contacts[0][email]" placeholder="Email address" class="w-full p-2 border border-gray-300 rounded-md" />
+                </td>
+                <td>
+                  <input type="text" name="contacts[0][company]" placeholder="Company name" class="w-full p-2 border border-gray-300 rounded-md" />
+                </td>
+                <td>
+                  <textarea name="contacts[0][notes]" placeholder="Additional notes..." rows="2" class="w-full p-2 border border-gray-300 rounded-md"></textarea>
+                </td>
+                <td>
+                  <button class="cursor-pointer deleteRow bg-red-600 dark:bg-red-500 hover:bg-red-500 dark:hover:bg-red-400 rounded-md p-2 text-center font-semibold text-white shadow-sm transition-colors duration-200 flex items-center justify-center h-8 w-8 m-0.5" title="Delete Row">
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke-width="1.5"
+                        stroke="currentColor"
+                        class="!text-base"
+                    >
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0"
+                        />
+                    </svg>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="footer">
+        <p>© 2026 Dynamic Table Component • Built with ❤️ for Laravel</p>
+      </div>
+    </div>
+
+    <script src="../assets/js/components.js"></script>
+  </body>
+</html>
