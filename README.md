@@ -1,258 +1,442 @@
 # MHShagor Laravel Components
 
-A Laravel component library that ships with reusable Blade UI components (forms, modals, tables, toggles), a File Picker component, shared CSS/JS assets, and demo templates.
+A comprehensive Laravel component library that provides reusable Blade UI components including forms, modals, tables, toggles, file picker, and shared CSS/JS assets with demo templates.
 
-This repository is designed to be published into your application’s `resources/` folder so you can **customize the Blade views, JavaScript, and CSS** as you need.
+This package is designed to be published into your application's `resources/` folder, allowing you to **customize Blade views, JavaScript, and CSS** according to your specific needs.
 
----
+## Features
+
+- **Modern UI Components**: Pre-built form inputs, modals, tables, and interactive elements
+- **Date & Time Pickers**: Integrated Flatpickr-based date/time selection components
+- **File Picker**: Advanced file upload component with preview capabilities
+- **Modal System**: Ready-to-use modal dialogs for add, edit, and delete operations
+- **Dynamic Tables**: Tables with add/remove row functionality
+- **Responsive Design**: Mobile-friendly components with Tailwind CSS
+- **Fully Customizable**: All assets are publishable and modifiable
+- **Performance Optimized**: Minimal JavaScript with efficient event handling
 
 ## Requirements
 
 - **PHP**: `^8.0`
-- **Laravel**: Works with modern Laravel versions (the package uses standard Blade components + vendor publishing).
-
----
+- **Laravel**: Compatible with modern Laravel versions (8.x, 9.x, 10.x, 11.x)
+- **Node.js**: Required for asset compilation (if using Vite/Laravel Mix)
 
 ## Installation
+
+Install the package via Composer:
 
 ```bash
 composer require mhshagor/laravel-components
 ```
 
-Laravel package auto-discovery will register the service provider automatically.
+Laravel's package auto-discovery will register the service provider automatically.
 
----
+## Quick Start
 
-## Publishing (Assets & Views)
+### 1. Publish Assets
 
-This package publishes multiple sets of files using `vendor:publish` tags.
-
-- **Publish everything**
+Publish all components and assets in one command:
 
 ```bash
 php artisan mhshagor:publish-all
 ```
 
-- **Publish only the File Picker package**
+Or publish specific components:
 
 ```bash
+# Publish only components
+php artisan vendor:publish --tag=components
+
+# Publish only file picker
 php artisan vendor:publish --tag=file-picker
 ```
 
-- **Publish only the shared Blade components + common assets**
+### 2. Include Assets
+
+Add the CSS and JavaScript to your application:
+
+```javascript
+// resources/js/app.js
+import "./vendor/components/components.js";
+import "./vendor/components/date-time-picker.js";
+```
+
+```css
+/* resources/css/app.css */
+@import "./vendor/components/components.css";
+@import "./vendor/components/date-time-picker.css";
+```
+
+### 3. Compile Assets
 
 ```bash
-php artisan vendor:publish --tag=components
+npm run build
+# or
+npm run dev
 ```
-
-### Published paths (current package behavior)
-
-When you publish, files will be copied into the following locations:
-
-- **Blade components**
-
-```
-resources/views/components/
-└── sgd/
-    ├── form/
-    ├── style/
-    ├── table/
-    ├── modal.blade.php
-    ├── modal-add.blade.php
-    ├── modal-edit.blade.php
-    ├── modal-delete.blade.php
-    └── toggle.blade.php
-```
-
-- **JavaScript assets**
-
-```
-resources/js/sgd/
-├── components.js
-└── file-picker.js
-└── date-time-picker.js
-```
-
-- **CSS assets**
-
-```
-resources/css/sgd/
-├── components.css
-└── file-picker.css
-└── date-time-picker.css
-```
-
-- **Demo templates**
-
-```
-resources/views/sgd/
-├── accordion.html
-├── dynamic-table.html
-└── file-picker.html
-```
-
-`file-picker.html` is also published explicitly by the **`file-picker`** publish tag.
-
-Notes:
-- Publishing will **copy** files into your app. If a destination already exists, Laravel may overwrite based on publish behavior and filesystem state.
-- This package organizes assets under the `sgd` folder to reduce collisions.
-
----
-
-## Using the Components
-
-All Blade components are available under the `sgd` namespace.
-
-Example:
-
-```blade
-<x-sgd.toggle label="Enable notifications" :checked="true" />
-```
-
----
 
 ## Component Catalog
 
-Below is a list of what this repository currently ships (based on the folder structure).
+### Form Components
 
-### Form Components (`resources/views/components/sgd/form`)
+#### Basic Form Wrapper
 
-- **`<x-sgd.form />`**
-  - Wrapper form component supporting method spoofing (`PUT`, `PATCH`, `DELETE`) and CSRF.
-- **Inputs**
-  - `<x-sgd.form.input />`
-  - `<x-sgd.form.textarea />`
-  - `<x-sgd.form.select />`
-- **Label + Input composites**
-  - `<x-sgd.form.label />`
-  - `<x-sgd.form.label-input />`
-  - `<x-sgd.form.label-select />`
-  - `<x-sgd.form.label-textarea />`
-- **Date & time pickers (UI hooks via CSS classes)**
-  - `<x-sgd.form.label-datepicker />` (`datePicker`)
-  - `<x-sgd.form.label-daterange />` (`dateRange`)
-  - `<x-sgd.form.label-datetimepicker />` (`dateTimePicker`)
-  - `<x-sgd.form.label-timepicker />` (`timePicker`)
-  - `<x-sgd.form.label-timerange />` (`timeRange`)
-- **Buttons & icons**
-  - `<x-sgd.form.button />`
-  - `<x-sgd.form.action-button />`
-  - `<x-sgd.form.icon />`
-- **File Picker (Blade wrapper)**
-  - `<x-sgd.form.file-picker />`
+```blade
+<x-sgd.form url="/submit" method="post">
+    <!-- Form content here -->
+</x-sgd.form>
+```
 
-### Modal Components (`resources/views/components/sgd`)
+#### Input Fields
 
-- **`<x-sgd.modal />`** base modal layout
-- **`<x-sgd.modal-add />`**
-- **`<x-sgd.modal-edit />`**
-- **`<x-sgd.modal-delete />`**
+```blade
+<!-- Text Input -->
+<x-sgd.form.input name="username" placeholder="Enter username" />
 
-### Table Components (`resources/views/components/sgd/table`)
+<!-- Textarea -->
+<x-sgd.form.textarea name="description" placeholder="Description" />
 
-- `<x-sgd.table.index />`
-- `<x-sgd.table.thead />`
-- `<x-sgd.table.tbody />`
-- `<x-sgd.table.tr />`
-- `<x-sgd.table.td />`
+<!-- Select Dropdown -->
+<x-sgd.form.select name="country" :options="['US' => 'United States', 'CA' => 'Canada']" />
+```
 
-### Style Components (`resources/views/components/sgd/style`)
+#### Labeled Input Components
 
-- `<x-sgd.style.card />`
-- `<x-sgd.style.accordion />`
-- `<x-sgd.style.dynamic-table />`
+```blade
+<!-- Input with Label -->
+<x-sgd.form.label-input name="email" label="Email Address" />
 
-### Misc
+<!-- Date Picker -->
+<x-sgd.form.label-datepicker name="birthdate" label="Birth Date" />
 
-- `<x-sgd.toggle />`
+<!-- Date Range -->
+<x-sgd.form.label-daterange name="period" label="Select Period" />
 
----
+<!-- DateTime Picker -->
+<x-sgd.form.label-datetimepicker name="event_date" label="Event Date & Time" />
 
-## File Picker Package
+<!-- Time Picker -->
+<x-sgd.form.label-timepicker name="start_time" label="Start Time" />
 
-This repository includes a dedicated File Picker module in `file-picker/`:
+<!-- Time Range -->
+<x-sgd.form.label-timerange name="work_hours" label="Work Hours" />
+```
 
-- **Blade component**: `file-picker/components/file-picker.blade.php`
-- **JS**: `file-picker/js/file-picker.js`
-- **CSS**: `file-picker/css/file-picker.css`
-- **Demo**: `demo/file-picker.html`
+#### Buttons
 
-Usage example:
+```blade
+<x-sgd.form.button type="submit">Submit Form</x-sgd.form.button>
+<x-sgd.form.action-button type="button" onclick="handleAction()">Action</x-sgd.form.action-button>
+```
+
+### Modal Components
+
+#### Base Modal
+
+```blade
+<x-sgd.modal modalId="example-modal">
+    <div class="p-6">
+        <h3 class="text-lg font-medium">Modal Title</h3>
+        <p class="mt-2">Modal content goes here.</p>
+        <div class="mt-4">
+            <button onclick="closeModal('example-modal')" class="btn btn-secondary">Close</button>
+        </div>
+    </div>
+</x-sgd.modal>
+```
+
+#### Specialized Modals
+
+```blade
+<!-- Add Modal -->
+<x-sgd.modal-add modalId="add-item">
+    <!-- Add form content -->
+</x-sgd.modal-add>
+
+<!-- Edit Modal -->
+<x-sgd.modal-edit modalId="edit-item">
+    <!-- Edit form content -->
+</x-sgd.modal-edit>
+
+<!-- Delete Modal -->
+<x-sgd.modal-delete modalId="delete-item">
+    <!-- Delete confirmation content -->
+</x-sgd.modal-delete>
+```
+
+### Table Components
+
+#### Dynamic Table
+
+```blade
+<x-sgd.table id="dynamic-table" :headers="['Name', 'Email', 'Actions']">
+    <div class="appendClone">
+        <div class="cloneRow">
+            <x-sgd.table.tr>
+                <x-sgd.table.td>
+                    <x-sgd.form.input name="rows[0][name]" />
+                </x-sgd.table.td>
+                <x-sgd.table.td>
+                    <x-sgd.form.input name="rows[0][email]" type="email" />
+                </x-sgd.table.td>
+                <x-sgd.table.td>
+                    <button class="deleteRow text-red-500">Remove</button>
+                </x-sgd.table.td>
+            </x-sgd.table.tr>
+        </div>
+    </div>
+    <button class="addRow bg-blue-500 text-white px-4 py-2 rounded">Add Row</button>
+</x-sgd.table>
+```
+
+### Style Components
+
+#### Card Component
+
+```blade
+<x-sgd.style.card class="p-6">
+    <h3 class="text-xl font-bold mb-4">Card Title</h3>
+    <p>Card content goes here.</p>
+</x-sgd.style.card>
+```
+
+#### Accordion Component
+
+```blade
+<x-sgd.style.accordion data-color="#3b82f6">
+    <div class="sgd-accordion-item">
+        <button class="sgd-accordion-btn" data-default="true">
+            Section 1
+        </button>
+        <div class="sgd-accordion-content">
+            <p>Content for section 1...</p>
+        </div>
+    </div>
+    <div class="sgd-accordion-item">
+        <button class="sgd-accordion-btn">
+            Section 2
+        </button>
+        <div class="sgd-accordion-content">
+            <p>Content for section 2...</p>
+        </div>
+    </div>
+</x-sgd.style.accordion>
+```
+
+### Toggle Component
+
+```blade
+<x-sgd.toggle label="Enable Notifications" :checked="true" name="notifications" />
+```
+
+### File Picker Component
 
 ```blade
 <x-sgd.form.file-picker
     name="attachments"
-    label="Attachments"
+    label="Upload Files"
     :multiple="true"
     :max="10"
-    type="file"
+    accept="image/*,application/pdf"
     preview-type="dropdown"
 />
 ```
 
----
+## Published File Structure
 
-## Frontend Setup
+After publishing, your resources directory will include:
 
-After publishing, import the JS/CSS in your app.
-
-### JavaScript (Vite / Laravel Mix)
-
-```js
-// resources/js/app.js
-import "./sgd/components.js";
-import "./sgd/file-picker.js";
-import "./sgd/date-time-picker.js";
+```
+resources/
+├── views/
+│   ├── components/
+│   │   └── sgd/
+│   │       ├── form/
+│   │       ├── style/
+│   │       ├── table/
+│   │       ├── modal.blade.php
+│   │       ├── modal-add.blade.php
+│   │       ├── modal-edit.blade.php
+│   │       ├── modal-delete.blade.php
+│   │       └── toggle.blade.php
+│   └── sgd/
+│       ├── accordion.html
+│       ├── dynamic-table.html
+│       └── file-picker.html
+├── js/
+│   └── vendor/
+│       └── components/
+│           ├── components.js
+│           └── date-time-picker.js
+└── css/
+    └── vendor/
+        └── components/
+            ├── components.css
+            └── date-time-picker.css
 ```
 
-### CSS
+## JavaScript Features
 
-```css
-/* resources/css/app.css */
-@import "./sgd/components.css";
-@import "./sgd/file-picker.css";
-@import "./sgd/date-time-picker.css";
+### Dynamic Table Operations
+
+- **Add Rows**: Click elements with `.addRow` class
+- **Delete Rows**: Click elements with `.deleteRow` class
+- **Auto-reindexing**: Form input names are automatically reindexed when rows are added/removed
+
+### Accordion Functionality
+
+- **Single Open**: Only one accordion item can be open at a time
+- **Custom Colors**: Set color using `data-color` attribute
+- **Default State**: Use `data-default="true"` to set initial open state
+
+### Date/Time Pickers
+
+The package includes Flatpickr integration for various date/time input types:
+
+- **Date Picker**: `.datePicker`
+- **Time Picker**: `.timePicker`
+- **DateTime Picker**: `.dateTimePicker`
+- **Date Range**: `.dateRange`
+- **Time Range**: `.timeRange`
+
+### Modal Management
+
+JavaScript functions for modal control:
+
+```javascript
+// Open modal
+openModal("modal-id");
+
+// Close modal
+closeModal("modal-id");
 ```
 
----
+## CSS Classes
 
-## Demos
+### Form Styling
 
-This repository includes demo HTML templates in `demo/`:
+- `.base-input`: Base styling for all input elements
+- `.base-button`: Base styling for buttons
+- Error states are automatically handled with `.text-red-500`
 
-- `demo/accordion.html`
-- `demo/dynamic-table.html`
-- `demo/file-picker.html`
+### Modal Styling
 
-These are published into `resources/views/sgd/` so you can open/copy them into your application pages.
+- `.modal-backdrop`: Semi-transparent backdrop
+- `.modal-panel`: Modal content container with transitions
 
----
+### Table Styling
+
+- `.dynamicTable`: Container for dynamic tables
+- `.cloneRow`: Row template for cloning
+- `.appendClone`: Container for cloned rows
+- `.counter`: Row number display
 
 ## Customization
 
-Once published, you can freely edit:
+### Modifying Components
 
-- **Blade views**: `resources/views/components/sgd/`
-- **JavaScript**: `resources/js/sgd/`
-- **CSS**: `resources/css/sgd/`
+All published components can be customized:
 
----
+1. **Blade Views**: Edit files in `resources/views/components/sgd/`
+2. **JavaScript**: Modify `resources/js/vendor/components/`
+3. **CSS**: Update styles in `resources/css/vendor/components/`
+
+### Adding New Components
+
+1. Create new Blade component in the appropriate folder
+2. Add JavaScript functionality to `components.js`
+3. Include CSS classes in `components.css`
+
+## Demos
+
+The package includes demo templates accessible after publishing:
+
+- **Accordion Demo**: `resources/views/sgd/accordion.html`
+- **Dynamic Table Demo**: `resources/views/sgd/dynamic-table.html`
+- **File Picker Demo**: Available via file-picker package
+
+## Troubleshooting
+
+### Common Issues
+
+1. **Date pickers not working**
+   - Ensure Flatpickr library is loaded
+   - Check browser console for JavaScript errors
+   - Verify CSS classes are correctly applied
+
+2. **Modal not opening**
+   - Check if modal ID matches the trigger
+   - Ensure JavaScript is properly loaded
+   - Verify modal elements exist in DOM
+
+3. **Dynamic table issues**
+   - Ensure `.addRow` and `.deleteRow` classes are present
+   - Check for JavaScript errors in browser console
+   - Verify table structure matches expected format
+
+### Browser Compatibility
+
+- **Modern Browsers**: Full support (Chrome, Firefox, Safari, Edge)
+- **IE11**: Limited support (some features may not work)
+- **Mobile**: Responsive design tested on iOS and Android
 
 ## Contributing
 
-- Fork the repository
-- Create a feature branch
-- Commit your changes
-- Open a Pull Request
+We welcome contributions! Please follow these steps:
 
----
+1. **Fork** the repository
+2. **Create** a feature branch (`git checkout -b feature/amazing-feature`)
+3. **Commit** your changes (`git commit -m 'Add amazing feature'`)
+4. **Push** to the branch (`git push origin feature/amazing-feature`)
+5. **Open** a Pull Request
+
+### Development Setup
+
+```bash
+# Clone the repository
+git clone https://github.com/mhshagor/laravel-components.git
+
+# Install dependencies
+composer install
+npm install
+
+# Run tests
+npm test
+```
+
+## Version History
+
+### v1.0.9
+
+- Fixed CSRF protection for all HTTP methods
+- Improved language helper with fallback values
+- Added Flatpickr availability check
+- Fixed CSS comment syntax issues
+- Enhanced error handling and logging
+
+### Previous Versions
+
+- See Git commit history for detailed changes
 
 ## License
 
-MIT
-
----
+This package is open-sourced software licensed under the **MIT license**.
 
 ## Support
 
-Email: `srq001100@gmail.com`
+For support, please contact:
+
+- **Email**: srq001100@gmail.com
+- **GitHub Issues**: [Create an issue](https://github.com/mhshagor/laravel-components/issues)
+
+## Credits
+
+- **Author**: M.H SHAGOR
+- **Dependencies**:
+  - Flatpickr (Date/Time Picker)
+  - Tailwind CSS (Styling)
+  - Alpine.js (Interactivity)
+
+---
+
+**Thank you for using MHShagor Laravel Components!**

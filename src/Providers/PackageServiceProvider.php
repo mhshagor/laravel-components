@@ -15,12 +15,12 @@ class PackageServiceProvider extends ServiceProvider
     {
         return [
             $this->basePath . 'assets/demo' => resource_path('views/sgd'),
-            $this->basePath . 'assets/js' => resource_path('js/sgd'),
-            $this->basePath . 'assets/css' => resource_path('css/sgd'),
+            $this->basePath . 'assets/js' => resource_path('js/vendor/components'),
+            $this->basePath . 'assets/css' => resource_path('css/vendor/components'),
             $this->basePath . 'assets/components' => resource_path('views/components'),
         ];
     }
-    
+
 
     public function boot()
     {
@@ -36,7 +36,7 @@ class PackageServiceProvider extends ServiceProvider
             PublishAllCommand::class,
         ]);
     }
-    
+
     public function register()
     {
         // Components will be auto-discovered via Laravel's component discovery

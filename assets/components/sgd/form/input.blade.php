@@ -3,7 +3,7 @@
     'type' => 'text',
     'name' => '',
     'autocomplete' => true,
-    'placeholder' => lang('type_here'),
+    'placeholder' => __('type_here', 'Type here...'),
     'value' => '',
 ])
 
