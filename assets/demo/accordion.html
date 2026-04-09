@@ -1,349 +1,364 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Accordion Component Demo</title>
-    <link rel="stylesheet" href="../../css/sgd/components.css" />
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            padding: 20px;
-        }
-        
-        .container {
-            max-width: 900px;
-            margin: auto;
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-            padding: 40px;
-        }
-        
-        h1 {
-            text-align: center;
-            color: #333;
-            margin-bottom: 10px;
-            font-size: 2.5rem;
-            font-weight: 700;
-        }
-        
-        .subtitle {
-            text-align: center;
-            color: #666;
-            margin-bottom: 40px;
-            font-size: 1.1rem;
-        }
-        
-        .demo-section {
-            background: #f8f9fa;
-            border-radius: 12px;
-            padding: 30px;
-            margin-bottom: 25px;
-            border: 1px solid #e9ecef;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-        
-        .demo-section:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-        }
-        
-        h2 {
-            color: #495057;
-            margin-bottom: 20px;
-            font-size: 1.5rem;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        h2::before {
-            content: '';
-            width: 4px;
-            height: 24px;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            border-radius: 2px;
-        }
-        
-        .badge {
-            display: inline-block;
-            padding: 4px 8px;
-            border-radius: 6px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            margin-left: 8px;
-        }
-        
-        .badge-new {
-            background: #28a745;
-            color: white;
-        }
-        
-        .badge-popular {
-            background: #ffc107;
-            color: #212529;
-        }
-        
-        .badge-advanced {
-            background: #dc3545;
-            color: white;
-        }
-        
-        .footer {
-            text-align: center;
-            margin-top: 40px;
-            padding-top: 20px;
-            border-top: 1px solid #e9ecef;
-            color: #6c757d;
-        }
-        
-        @media (max-width: 768px) {
-            .container {
-                padding: 20px;
-                margin: 10px;
-            }
-            
-            h1 {
-                font-size: 2rem;
-            }
-            
-            .demo-section {
-                padding: 20px;
-            }
-        }
-    </style>
-  </head>
-  <body>
-    <div class="container">
-      <h1>Accordion Component</h1>
-      <p class="subtitle">Smooth, accessible accordion with multiple themes and configurations</p>
 
-      <div class="demo-section">
-        <h2>Basic Accordion <span class="badge badge-popular">Popular</span></h2>
-        <div class="sgd-accordion" id="accordion-01" data-color="blue">
-          <div class="sgd-accordion-item">
-            <button type="button" class="sgd-accordion-btn" data-default="true">
-              <span class="">Getting Started</span>
-              <svg class="sgd-accordion-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-              </svg>
-            </button>
-            <div class="sgd-accordion-content">
-              <div class="sgd-accordion-content-body">
-                <p>Welcome to our accordion component! This is a fully accessible, smooth animated accordion that works perfectly with keyboard navigation and screen readers.</p>
-                <ul style="margin-top: 10px; padding-left: 20px;">
-                  <li>Smooth CSS transitions</li>
-                  <li>Keyboard accessible</li>
-                  <li>ARIA compliant</li>
-                  <li>Multiple color themes</li>
-                </ul>
-              </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Accordion Component Demo</title>
+  <link rel="stylesheet" href="../public/css/components.css" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: auto;
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+      padding: 40px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 10px;
+      font-size: 2.5rem;
+      font-weight: 700;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: #666;
+      margin-bottom: 40px;
+      font-size: 1.1rem;
+    }
+
+    .demo-section {
+      background: #f8f9fa;
+      border-radius: 12px;
+      padding: 30px;
+      margin-bottom: 25px;
+      border: 1px solid #e9ecef;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .demo-section:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      color: #495057;
+      margin-bottom: 20px;
+      font-size: 1.5rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    h2::before {
+      content: '';
+      width: 4px;
+      height: 24px;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      border-radius: 2px;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 4px 8px;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      margin-left: 8px;
+    }
+
+    .badge-new {
+      background: #28a745;
+      color: white;
+    }
+
+    .badge-popular {
+      background: #ffc107;
+      color: #212529;
+    }
+
+    .badge-advanced {
+      background: #dc3545;
+      color: white;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 1px solid #e9ecef;
+      color: #6c757d;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 20px;
+        margin: 10px;
+      }
+
+      h1 {
+        font-size: 2rem;
+      }
+
+      .demo-section {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Accordion Component</h1>
+    <p class="subtitle">Smooth, accessible accordion with multiple themes and configurations</p>
+
+    <div class="demo-section">
+      <h2>Basic Accordion <span class="badge badge-popular">Popular</span></h2>
+      <div class="sgd-accordion" id="accordion-01" data-color="blue">
+        <div class="sgd-accordion-item">
+          <button type="button" class="sgd-accordion-btn" data-default="true">
+            <span class="">Getting Started</span>
+            <svg class="sgd-accordion-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          <div class="sgd-accordion-content">
+            <div class="sgd-accordion-content-body">
+              <p>Welcome to our accordion component! This is a fully accessible, smooth animated accordion that works
+                perfectly with keyboard navigation and screen readers.</p>
+              <ul style="margin-top: 10px; padding-left: 20px;">
+                <li>Smooth CSS transitions</li>
+                <li>Keyboard accessible</li>
+                <li>ARIA compliant</li>
+                <li>Multiple color themes</li>
+              </ul>
             </div>
           </div>
-          <div class="sgd-accordion-item">
-            <button type="button" class="sgd-accordion-btn" data-default="false">
-              <span class="">Installation</span>
-              <svg class="sgd-accordion-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-              </svg>
-            </button>
-            <div class="sgd-accordion-content">
-              <div class="sgd-accordion-content-body">
-                <p>Installation is simple and straightforward. Just include the CSS and JavaScript files, and you're ready to go!</p>
-                <pre style="background: #f4f4f4; padding: 10px; border-radius: 4px; margin-top: 10px;">
+        </div>
+        <div class="sgd-accordion-item">
+          <button type="button" class="sgd-accordion-btn" data-default="false">
+            <span class="">Installation</span>
+            <svg class="sgd-accordion-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          <div class="sgd-accordion-content">
+            <div class="sgd-accordion-content-body">
+              <p>Installation is simple and straightforward. Just include the CSS and JavaScript files, and you're ready
+                to go!</p>
+              <pre style="background: #f4f4f4; padding: 10px; border-radius: 4px; margin-top: 10px;">
 &lt;link rel="stylesheet" href="css/accordion.css"&gt;
 &lt;script src="js/accordion.js"&gt;&lt;/script&gt;</pre>
-              </div>
-            </div>
-          </div>
-          <div class="sgd-accordion-item">
-            <button type="button" class="sgd-accordion-btn" data-default="false">
-              <span class="">Basic Usage</span>
-              <svg class="sgd-accordion-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-              </svg>
-            </button>
-            <div class="sgd-accordion-content">
-              <div class="sgd-accordion-content-body">
-                <p>Use the accordion by adding the appropriate classes and data attributes. The component will automatically initialize.</p>
-              </div>
             </div>
           </div>
         </div>
-      </div>
-
-      <div class="demo-section">
-        <h2>Multiple Open Sections <span class="badge badge-new">New</span></h2>
-        <div class="sgd-accordion" id="accordion-02" data-color="green" data-multiple="true">
-          <div class="sgd-accordion-item">
-            <button type="button" class="sgd-accordion-btn" data-default="true">
-              <span class="">Features</span>
-              <svg class="sgd-accordion-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-              </svg>
-            </button>
-            <div class="sgd-accordion-content">
-              <div class="sgd-accordion-content-body">
-                <p>This accordion allows multiple sections to be open simultaneously. Perfect for FAQ pages and content-heavy interfaces.</p>
-              </div>
-            </div>
-          </div>
-          <div class="sgd-accordion-item">
-            <button type="button" class="sgd-accordion-btn" data-default="true">
-              <span class="">Benefits</span>
-              <svg class="sgd-accordion-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-              </svg>
-            </button>
-            <div class="sgd-accordion-content">
-              <div class="sgd-accordion-content-body">
-                <p>Users can view multiple sections at once, making it easier to compare information and find relevant content quickly.</p>
-              </div>
-            </div>
-          </div>
-          <div class="sgd-accordion-item">
-            <button type="button" class="sgd-accordion-btn" data-default="false">
-              <span class="">Use Cases</span>
-              <svg class="sgd-accordion-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-              </svg>
-            </button>
-            <div class="sgd-accordion-content">
-              <div class="sgd-accordion-content-body">
-                <p>Ideal for documentation, product features, service descriptions, and any content that benefits from organized presentation.</p>
-              </div>
+        <div class="sgd-accordion-item">
+          <button type="button" class="sgd-accordion-btn" data-default="false">
+            <span class="">Basic Usage</span>
+            <svg class="sgd-accordion-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          <div class="sgd-accordion-content">
+            <div class="sgd-accordion-content-body">
+              <p>Use the accordion by adding the appropriate classes and data attributes. The component will
+                automatically initialize.</p>
             </div>
           </div>
         </div>
-      </div>
-
-      <div class="demo-section">
-        <h2>Different Color Themes</h2>
-        <div class="sgd-accordion" id="accordion-03" data-color="red">
-          <div class="sgd-accordion-item">
-            <button type="button" class="sgd-accordion-btn" data-default="false">
-              <span class="">Red Theme</span>
-              <svg class="sgd-accordion-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-              </svg>
-            </button>
-            <div class="sgd-accordion-content">
-              <div class="sgd-accordion-content-body">
-                <p>The red theme provides a bold, attention-grabbing appearance perfect for important alerts and critical information.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        <div style="margin-top: 20px;">
-          <div class="sgd-accordion" id="accordion-04" data-color="purple">
-            <div class="sgd-accordion-item">
-              <button type="button" class="sgd-accordion-btn" data-default="false">
-                <span class="">Purple Theme</span>
-                <svg class="sgd-accordion-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                </svg>
-              </button>
-              <div class="sgd-accordion-content">
-                <div class="sgd-accordion-content-body">
-                  <p>The purple theme offers a elegant, professional look suitable for premium applications and sophisticated interfaces.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="demo-section">
-        <h2>Advanced Configuration <span class="badge badge-advanced">Advanced</span></h2>
-        <div class="sgd-accordion" id="accordion-05" data-color="orange" data-multiple="true">
-          <div class="sgd-accordion-item">
-            <button type="button" class="sgd-accordion-btn" data-default="true">
-              <span class="">Custom Animations</span>
-              <svg class="sgd-accordion-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-              </svg>
-            </button>
-            <div class="sgd-accordion-content">
-              <div class="sgd-accordion-content-body">
-                <p>Customize animation speed, easing functions, and transitions to match your application's design language.</p>
-                <ul style="margin-top: 10px; padding-left: 20px;">
-                  <li>Adjustable animation duration</li>
-                  <li>Custom easing curves</li>
-                  <li>Transition effects</li>
-                  <li>Staggered animations</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div class="sgd-accordion-item">
-            <button type="button" class="sgd-accordion-btn" data-default="false">
-              <span class="">Event Handling</span>
-              <svg class="sgd-accordion-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-              </svg>
-            </button>
-            <div class="sgd-accordion-content">
-              <div class="sgd-accordion-content-body">
-                <p>Listen to accordion events to trigger custom actions, analytics tracking, or state management updates.</p>
-                <pre style="background: #f4f4f4; padding: 10px; border-radius: 4px; margin-top: 10px;">
-accordion.addEventListener('open', (event) => {
-  console.log('Section opened:', event.detail);
-});</pre>
-              </div>
-            </div>
-          </div>
-          <div class="sgd-accordion-item">
-            <button type="button" class="sgd-accordion-btn" data-default="false">
-              <span class="">Accessibility Features</span>
-              <svg class="sgd-accordion-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-              </svg>
-            </button>
-            <div class="sgd-accordion-content">
-              <div class="sgd-accordion-content-body">
-                <p>Built with accessibility in mind, featuring proper ARIA attributes, keyboard navigation, and screen reader support.</p>
-                <ul style="margin-top: 10px; padding-left: 20px;">
-                  <li>ARIA attributes</li>
-                  <li>Keyboard navigation</li>
-                  <li>Screen reader support</li>
-                  <li>Focus management</li>
-                  <li>High contrast mode support</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div class="sgd-accordion-item">
-            <button type="button" class="sgd-accordion-btn" data-default="false">
-              <span class="">Performance Optimization</span>
-              <svg class="sgd-accordion-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-              </svg>
-            </button>
-            <div class="sgd-accordion-content">
-              <div class="sgd-accordion-content-body">
-                <p>Optimized for performance with minimal DOM manipulation, efficient event handling, and smooth 60fps animations.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="footer">
-        <p>© 2026 Accordion Component • Built with ❤️ for Laravel</p>
       </div>
     </div>
 
-    <script src="../../js/sgd/components.js"></script>
-  </body>
+    <div class="demo-section">
+      <h2>Multiple Open Sections <span class="badge badge-new">New</span></h2>
+      <div class="sgd-accordion" id="accordion-02" data-color="green" data-multiple="true">
+        <div class="sgd-accordion-item">
+          <button type="button" class="sgd-accordion-btn" data-default="true">
+            <span class="">Features</span>
+            <svg class="sgd-accordion-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          <div class="sgd-accordion-content">
+            <div class="sgd-accordion-content-body">
+              <p>This accordion allows multiple sections to be open simultaneously. Perfect for FAQ pages and
+                content-heavy interfaces.</p>
+            </div>
+          </div>
+        </div>
+        <div class="sgd-accordion-item">
+          <button type="button" class="sgd-accordion-btn" data-default="true">
+            <span class="">Benefits</span>
+            <svg class="sgd-accordion-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          <div class="sgd-accordion-content">
+            <div class="sgd-accordion-content-body">
+              <p>Users can view multiple sections at once, making it easier to compare information and find relevant
+                content quickly.</p>
+            </div>
+          </div>
+        </div>
+        <div class="sgd-accordion-item">
+          <button type="button" class="sgd-accordion-btn" data-default="false">
+            <span class="">Use Cases</span>
+            <svg class="sgd-accordion-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          <div class="sgd-accordion-content">
+            <div class="sgd-accordion-content-body">
+              <p>Ideal for documentation, product features, service descriptions, and any content that benefits from
+                organized presentation.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="demo-section">
+      <h2>Different Color Themes</h2>
+      <div class="sgd-accordion" id="accordion-03" data-color="red">
+        <div class="sgd-accordion-item">
+          <button type="button" class="sgd-accordion-btn" data-default="false">
+            <span class="">Red Theme</span>
+            <svg class="sgd-accordion-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          <div class="sgd-accordion-content">
+            <div class="sgd-accordion-content-body">
+              <p>The red theme provides a bold, attention-grabbing appearance perfect for important alerts and critical
+                information.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top: 20px;">
+        <div class="sgd-accordion" id="accordion-04" data-color="purple">
+          <div class="sgd-accordion-item">
+            <button type="button" class="sgd-accordion-btn" data-default="false">
+              <span class="">Purple Theme</span>
+              <svg class="sgd-accordion-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+            <div class="sgd-accordion-content">
+              <div class="sgd-accordion-content-body">
+                <p>The purple theme offers a elegant, professional look suitable for premium applications and
+                  sophisticated interfaces.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="demo-section">
+      <h2>Advanced Configuration <span class="badge badge-advanced">Advanced</span></h2>
+      <div class="sgd-accordion" id="accordion-05" data-color="orange" data-multiple="true">
+        <div class="sgd-accordion-item">
+          <button type="button" class="sgd-accordion-btn" data-default="true">
+            <span class="">Custom Animations</span>
+            <svg class="sgd-accordion-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          <div class="sgd-accordion-content">
+            <div class="sgd-accordion-content-body">
+              <p>Customize animation speed, easing functions, and transitions to match your application's design
+                language.</p>
+              <ul style="margin-top: 10px; padding-left: 20px;">
+                <li>Adjustable animation duration</li>
+                <li>Custom easing curves</li>
+                <li>Transition effects</li>
+                <li>Staggered animations</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="sgd-accordion-item">
+          <button type="button" class="sgd-accordion-btn" data-default="false">
+            <span class="">Event Handling</span>
+            <svg class="sgd-accordion-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          <div class="sgd-accordion-content">
+            <div class="sgd-accordion-content-body">
+              <p>Listen to accordion events to trigger custom actions, analytics tracking, or state management updates.
+              </p>
+              <pre style="background: #f4f4f4; padding: 10px; border-radius: 4px; margin-top: 10px;">
+accordion.addEventListener('open', (event) => {
+  console.log('Section opened:', event.detail);
+});</pre>
+            </div>
+          </div>
+        </div>
+        <div class="sgd-accordion-item">
+          <button type="button" class="sgd-accordion-btn" data-default="false">
+            <span class="">Accessibility Features</span>
+            <svg class="sgd-accordion-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          <div class="sgd-accordion-content">
+            <div class="sgd-accordion-content-body">
+              <p>Built with accessibility in mind, featuring proper ARIA attributes, keyboard navigation, and screen
+                reader support.</p>
+              <ul style="margin-top: 10px; padding-left: 20px;">
+                <li>ARIA attributes</li>
+                <li>Keyboard navigation</li>
+                <li>Screen reader support</li>
+                <li>Focus management</li>
+                <li>High contrast mode support</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="sgd-accordion-item">
+          <button type="button" class="sgd-accordion-btn" data-default="false">
+            <span class="">Performance Optimization</span>
+            <svg class="sgd-accordion-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          <div class="sgd-accordion-content">
+            <div class="sgd-accordion-content-body">
+              <p>Optimized for performance with minimal DOM manipulation, efficient event handling, and smooth 60fps
+                animations.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <p>© 2026 Accordion Component • Built with ❤️ for Laravel</p>
+    </div>
+  </div>
+
+  <script src="../public/js/components.js"></script>
+</body>
+
 </html>
