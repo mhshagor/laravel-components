@@ -5,11 +5,10 @@
     "laravel",
     "components"
   ],
-  "version": "1.1.2",
+  "version": "1.0.0",
   "type": "library",
   "license": "MIT",
   "require": {
-    "php": "^8.0",
     "mhshagor/file-picker": "^1.0",
     "mhshagor/system-core": "^1.0"
   },
@@ -45,6 +44,6 @@
       "pestphp/pest-plugin": true
     }
   },
-  "minimum-stability": "dev",
+  "minimum-stability": "stable",
   "prefer-stable": true
 }
